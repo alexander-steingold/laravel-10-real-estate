@@ -1,3 +1,3 @@
 <x-base-layout title="Landing Page">
-    test
+    test 2
 </x-base-layout>
