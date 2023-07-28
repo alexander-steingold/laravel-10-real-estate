@@ -40,7 +40,7 @@
 
                                     <li>
                                         <x-frontend.partials.dropdown-link :href="route('register')">
-                                            Register
+                                            sfsf
                                         </x-frontend.partials.dropdown-link>
                                     </li>
                                 </ul>
@@ -64,11 +64,11 @@
                 @else
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-frontend.partials.nav-link :href="route('register')">
-                            Register
+                            {{ __('navbar.register') }}
                         </x-frontend.partials.nav-link>
 
                         <x-frontend.partials.nav-link :href="route('login')">
-                            Login
+                            {{ __('navbar.login') }}
                         </x-frontend.partials.nav-link>
                     </div>
                 @endauth
