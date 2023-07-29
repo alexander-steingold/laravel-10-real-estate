@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\LandingController;
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\Backend\AuthController as AdminAuthController;
+use App\Http\Controllers\Frontend\AuthController as FrontAuthController;
+use App\Http\Controllers\Frontend\LandingController;
+use App\Http\Controllers\Backend\PagesController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,18 +24,29 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ], function () {
 
-    Route::get('/', [LandingController::class, 'index']);
-    Route::prefix('admin')->middleware('guest')->group(function () {
-        Route::get('/login', [\App\Http\Controllers\AuthController::class, 'loginView'])->name('loginView');
-        Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
-        Route::get('/register', [\App\Http\Controllers\AuthController::class, 'registerView'])->name('registerView');
-        Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register'])->name('register');
+    Route::get('/', [LandingController::class, 'index'])->name('landing');
+    Route::controller(FrontAuthController::class)->middleware('guest')->group(function () {
+        Route::get('/login', 'loginView')->name('front.login');
+        Route::post('/login', 'login')->name('front.login');
+        Route::get('/register', 'registerView')->name('front.register');
+        Route::post('/register', 'register')->name('front.register');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::post('/logout', [FrontAuthController::class, 'logout'])->name('front.logout');
+    });
+
+    Route::prefix('admin')->controller(AdminAuthController::class)->middleware('guest')->group(function () {
+        Route::get('/login', 'loginView')->name('admin.login');
+        Route::post('/login', 'login')->name('admin.login');
+        Route::get('/register', 'registerView')->name('admin.register');
+        Route::post('/register', 'register')->name('admin.register');
     });
 
 });
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
     Route::get('/', [PagesController::class, 'dashboardsCrmAnalytics'])->name('index');
 
     Route::get('/elements/avatar', [PagesController::class, 'elementsAvatar'])->name('elements/avatar');

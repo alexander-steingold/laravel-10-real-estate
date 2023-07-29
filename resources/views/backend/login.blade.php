@@ -27,7 +27,7 @@
                     </p>
                 </div>
             </div>
-            <form class="mt-16" action="{{ route('login') }}" method="post">
+            <form class="mt-16" action="{{ route('admin.login') }}" method="post">
                 @method('POST') @csrf
                 <div>
                     <label class="relative flex">
@@ -88,7 +88,7 @@
                         <span>Dont have Account?</span>
 
                         <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-                           href="{{ route('registerView') }}">Create account</a>
+                           href="{{ route('admin.register') }}">Create account</a>
                     </p>
                 </div>
                 <div class="my-7 flex items-center space-x-3">

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,7 @@ class AuthController extends Controller
 {
     public function loginView()
     {
-        return view('login');
+        return view('backend.login');
     }
 
     public function login(Request $request)
@@ -39,16 +40,18 @@ class AuthController extends Controller
         }
     }
 
-    public function registerView(){
-        return view('register');
+    public function registerView()
+    {
+        return view('backend.register');
     }
 
-    public function register(Request $request){
-        
+    public function register(Request $request)
+    {
+
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string'],
-            'email' => ['required', 'email','unique:users'],
-            'password' => ['required',"confirmed", Password::min(7)],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', "confirmed", Password::min(7)],
         ]);
 
         $validated = $validator->validated();
@@ -67,6 +70,6 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('login');
+        return redirect()->route('admin.login');
     }
 }
