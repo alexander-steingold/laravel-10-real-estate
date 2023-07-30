@@ -22,7 +22,7 @@ class ProductFactory extends Factory
         return [
             'title' => fake()->sentence(5),
             'description' => fake()->paragraph(3),
-            'property_type' => fake()->randomElement(Product::$type),
+            'type' => fake()->randomElement(Product::$type),
             'target' => fake()->randomElement(Product::$target),
             'year_built' => fake()->numberBetween(1980, 2023),
             'price' => fake()->numberBetween(100000, 1000000),

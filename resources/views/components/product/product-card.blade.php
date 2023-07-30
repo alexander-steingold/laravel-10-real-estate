@@ -1,18 +1,12 @@
 <x-app-partials.card {{ $attributes->merge(['class' => 'text-slate-600']) }}>
     <div class="flex flex-wrap">
         <div class="w-full md:w-1/3">
-            <div class="relative">
-                <x-app-partials.image src="{{ asset('images/200x200.png') }}" :alt="$product->title"
-                                      :title="$product->title"/>
-                <div class="absolute top-2 right-6 ">
-                    <div class="badge  mt-2 bg-success/15 text-success dark:bg-info/15">
-                        FOR {{ Str::upper($product->target ) }}
-                    </div>
-                </div>
+            <div class="flex h-full items-center">
+                <x-product.product-card-image :product="$product"/>
             </div>
         </div>
         <div class="w-full md:w-2/3 pl-4">
-            <h3 class="font-medium text-lg mt-4">
+            <h3 class="font-medium text-lg ">
                 {{ Str::limit($product->title, 25, '...')  }}
             </h3>
             <x-app-partials.divider/>
@@ -42,8 +36,13 @@
                 </div>
             </div>
             <x-app-partials.divider/>
-            <div class="text-xl">
-                ${{ number_format($product->price) }}
+            <div class=" flex justify-between items-center">
+                <div class="text-xl">
+                    ${{ number_format($product->price) }}
+                </div>
+                <div class="text-success">
+                    {{ Str::upper($product->type) }}
+                </div>
             </div>
         </div>
     </div>

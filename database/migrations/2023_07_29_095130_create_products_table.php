@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('property_type');
+            $table->string('type');
             $table->string('target');
             $table->smallInteger('year_built');
             $table->integer('price');

@@ -16,8 +16,17 @@ class LandingController extends Controller
 
     public function index()
     {
+
         $products = $this->productService->index();
-       
-        return view('frontend.landing.index', ['products' => $products]);
+        $targets = Product::$target;
+        $types = Product::$type;
+        //  return $products;
+        return view('frontend.landing.index',
+            [
+                'products' => $products,
+                'targets' => $targets,
+                'types' => $types
+            ]
+        );
     }
 }
