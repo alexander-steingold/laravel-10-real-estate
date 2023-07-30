@@ -1,7 +1,7 @@
-<nav class="w-full h-18 bg-white border-b border-gray-100 sticky top-0 ">
-    <x-frontend.partials.container class="flex items-center h-full justify-between w-full max-w-7xl mx-auto">
+<nav class="w-full h-18 bg-white border-b  border-slate-100  shadow-sm z-50 sticky top-0 ">
+    <x-app-partials.container class="flex  items-center h-full justify-between ">
         <a href="{{ url('/') }}">
-            <x-frontend.partials.application-logo/>
+            <x-app-partials.application-logo/>
         </a>
         <div>
             @auth
@@ -11,7 +11,7 @@
                     class="inline-flex"
                 >
                     <button
-                        class="btn space-x-2  font-medium text-slate-800   dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                        class="inline-flex space-x-2 justify-between items-center  font-medium text-slate-800   dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                         x-ref="popperRef"
                         @click="isShowPopper = !isShowPopper"
                     >
@@ -38,9 +38,9 @@
                             <ul>
 
                                 <li>
-                                    <x-frontend.partials.dropdown-link :href="route('front.register')">
+                                    <x-app-partials.dropdown-link :href="route('front.register')">
                                         sfsf
-                                    </x-frontend.partials.dropdown-link>
+                                    </x-app-partials.dropdown-link>
                                 </li>
                             </ul>
                             <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
@@ -49,11 +49,11 @@
                                     <!-- Authentication -->
                                     <form method="POST" action="{{ route('front.logout') }}">
                                         @csrf
-                                        <x-frontend.partials.dropdown-link :href="route('front.logout')"
-                                                                           onclick="event.preventDefault();
+                                        <x-app-partials.dropdown-link :href="route('front.logout')"
+                                                                      onclick="event.preventDefault();
                                                                                    this.closest('form').submit();">
                                             {{ __('Log Out') }}
-                                        </x-frontend.partials.dropdown-link>
+                                        </x-app-partials.dropdown-link>
                                     </form>
                                 </li>
                             </ul>
@@ -62,17 +62,17 @@
                 </div>
             @else
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <x-frontend.partials.nav-link :href="route('front.register')">
+                    <x-app-partials.nav-link :href="route('front.register')">
                         {{ __('navbar.register') }}
-                    </x-frontend.partials.nav-link>
+                    </x-app-partials.nav-link>
 
-                    <x-frontend.partials.nav-link :href="route('front.login')">
+                    <x-app-partials.nav-link :href="route('front.login')">
                         {{ __('navbar.login') }}
-                    </x-frontend.partials.nav-link>
+                    </x-app-partials.nav-link>
                 </div>
             @endauth
         </div>
-    </x-frontend.partials.container>
+    </x-app-partials.container>
 </nav>
 
 

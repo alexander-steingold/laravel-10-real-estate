@@ -14,7 +14,8 @@
             - {{ $title }}
         @endisset
     </title>
-
+    <link rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!-- CSS & JS Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -40,20 +41,18 @@
 </head>
 
 <body x-data x-bind="$store.global.documentBody"
-      class="@isset($isSidebarOpen) {{ $isSidebarOpen === 'true' ? 'is-sidebar-open' : '' }} @endisset @isset($isHeaderBlur) {{ $isHeaderBlur === 'true' ? 'is-header-blur' : '' }} @endisset @isset($hasMinSidebar) {{ $hasMinSidebar === 'true' ? 'has-min-sidebar' : '' }} @endisset @isset($headerSticky) {{ $headerSticky === 'false' ? 'is-header-not-sticky' : '' }} @endisset">
+      class=" bg-white @isset($isSidebarOpen) {{ $isSidebarOpen === 'true' ? 'is-sidebar-open' : '' }} @endisset @isset($isHeaderBlur) {{ $isHeaderBlur === 'true' ? 'is-header-blur' : '' }} @endisset @isset($hasMinSidebar) {{ $hasMinSidebar === 'true' ? 'has-min-sidebar' : '' }} @endisset @isset($headerSticky) {{ $headerSticky === 'false' ? 'is-header-not-sticky' : '' }} @endisset">
 
 <!-- App preloader-->
 <x-app-preloader/>
 @isset($nonavbar)
 
 @else
-    <x-frontend.partials.navbar/>
+    <x-app-partials.navbar/>
 @endisset
 <!-- Page Wrapper -->
-<div id="root" class="min-h-100vh flex grow  bg-slate-50 dark:bg-navy-900" x-cloak>
-
+<div id="root" class="min-h-100vh flex  grow mt-8  dark:bg-navy-900" x-cloak>
     {{ $slot }}
-
 </div>
 
 <!--

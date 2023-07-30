@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Company;
+use App\Models\Image;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,17 +16,41 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        DB::table('users')->insert([
-            'name' => 'Piniastudio',
-            'email' => 'help@piniastudio.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        User::factory()->create([
+            'name' => 'Alexander Steingold',
+            'email' => 'alex@gmail.com',
         ]);
+
+        User::factory(10)->create();
+        $users = User::all();
+
+        for ($i = 0; $i < 11; $i++) {
+            Company::factory()->create([
+                'user_id' => $users->pop()->id
+            ]);
+        }
+        $companies = Company::all();
+        for ($i = 0; $i < 100; $i++) {
+            $product = Product::factory()->create([
+                'company_id' => $companies->random()->id
+            ]);
+            foreach (range(1, fake()->numberBetween(5, 10)) as $index) {
+                Image::factory()->create([
+                    'product_id' => $product->id
+                ]);
+            }
+        }
+
+
+//        foreach ($users as $user) {
+//            $jobs = Job::inRandomOrder()->take(rand(0, 4))->get();
+//            foreach ($jobs as $job) {
+//                JobApplication::factory()->create([
+//                    'job_id' => $job->id,
+//                    'user_id' => $user->id
+//                ]);
+//            }
+//
+//        }
     }
 }
