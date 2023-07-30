@@ -24,9 +24,9 @@ class Company extends Model
         'website',
     ];
 
-    public function products(): HasMany
+    public function items(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Item::class);
     }
 
     public function user(): BelongsTo

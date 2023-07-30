@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Company;
 use App\Models\Image;
-use App\Models\Product;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -31,12 +31,12 @@ class DatabaseSeeder extends Seeder
         }
         $companies = Company::all();
         for ($i = 0; $i < 100; $i++) {
-            $product = Product::factory()->create([
+            $item = Item::factory()->create([
                 'company_id' => $companies->random()->id
             ]);
             foreach (range(1, fake()->numberBetween(5, 10)) as $index) {
                 Image::factory()->create([
-                    'product_id' => $product->id
+                    'item_id' => $item->id
                 ]);
             }
         }

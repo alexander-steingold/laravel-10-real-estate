@@ -2,19 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
+
+use App\Models\Item;
+use App\Services\ItemService;
 use Illuminate\Http\Request;
 
-class Product extends Controller
+class ItemController extends Controller
 {
+    public function __construct(private ItemService $itemService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::with('company')->latest()->get();
-
+        $items = $this->itemService->index();
+        $targets = Item::$target;
+        $types = Item::$type;
+        $features = Item::$features;
+        return view('frontend.item.index',
+            [
+                'items' => $items,
+                'targets' => $targets,
+                'types' => $types,
+                'features' => $features,
+            ]
+        );
     }
+
 
     /**
      * Show the form for creating a new resource.

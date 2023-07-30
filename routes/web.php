@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AuthController as AdminAuthController;
 use App\Http\Controllers\Frontend\AuthController as FrontAuthController;
 use App\Http\Controllers\Frontend\LandingController;
 use App\Http\Controllers\Backend\PagesController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,6 +32,8 @@ Route::group(
         Route::get('/register', 'registerView')->name('front.register');
         Route::post('/register', 'register')->name('front.register');
     });
+
+    Route::resource('item', ItemController::class);
 
     Route::middleware('auth')->group(function () {
         Route::post('/logout', [FrontAuthController::class, 'logout'])->name('front.logout');
