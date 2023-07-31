@@ -19,7 +19,6 @@ class CompanyFactory extends Factory
         return [
             'name' => fake()->company,
             'description' => fake()->paragraph,
-            'country' => fake()->country,
             'city' => fake()->city,
             'address' => fake()->address,
             'zip' => fake()->postcode,

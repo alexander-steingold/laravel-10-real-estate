@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Backend\AuthController as AdminAuthController;
 use App\Http\Controllers\Frontend\AuthController as FrontAuthController;
+use App\Http\Controllers\Frontend\CompanyController;
 use App\Http\Controllers\Frontend\LandingController;
 use App\Http\Controllers\Backend\PagesController;
+use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,8 +37,17 @@ Route::group(
 
     Route::resource('item', ItemController::class);
 
+
     Route::middleware('auth')->group(function () {
         Route::post('/logout', [FrontAuthController::class, 'logout'])->name('front.logout');
+
+
+        Route::prefix('company')->controller(CompanyController::class)->group(function () {
+
+            Route::get('/dashboard', 'dashboard')->name('company.dashboard');
+        });
+        Route::resource('user', UserController::class);
+        Route::resource('company', CompanyController::class);
     });
 
     Route::prefix('admin')->controller(AdminAuthController::class)->middleware('guest')->group(function () {
@@ -44,6 +55,8 @@ Route::group(
         Route::post('/login', 'login')->name('admin.login');
         Route::get('/register', 'registerView')->name('admin.register');
         Route::post('/register', 'register')->name('admin.register');
+
+
     });
 
 });

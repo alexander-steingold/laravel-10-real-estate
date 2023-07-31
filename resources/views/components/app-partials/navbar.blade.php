@@ -3,40 +3,41 @@
         <a href="{{ url('/') }}">
             <x-app-partials.application-logo/>
         </a>
-        <div>
+        <div class="flex items-center">
+
             @auth
+                <x-app-partials.nav-link class="text-success" :href="route('company.dashboard')">
+                    {{ __('navbar.switchtoagency') }}
+                </x-app-partials.nav-link>
                 <div
                     x-data="usePopper({placement:'bottom-start',offset:4})"
                     @click.outside="if(isShowPopper) isShowPopper = false"
-                    class="inline-flex"
-                >
+                    class="inline-flex ml-2">
                     <button
-                        class="inline-flex space-x-2 justify-between items-center  font-medium text-slate-800   dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                         x-ref="popperRef"
                         @click="isShowPopper = !isShowPopper"
-                    >
-                        <span>{{ Auth::user()->name }}</span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4 transition-transform duration-200"
-                            :class="isShowPopper && 'rotate-180'"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M19 9l-7 7-7-7"
-                            />
+                        class="btn h-8 w-8 rounded-full p-0 bg-slate-300/20 hover:bg-slate-300/40 focus:bg-slate-300/40 active:bg-slate-300/30 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="h-4 w-4 stroke-[3]">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
                         </svg>
                     </button>
                     <div x-ref="popperRoot" class="popper-root" :class="isShowPopper && 'show'">
                         <div
-                            class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
-                            <ul>
+                            class="w-72 popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                            <div class="p-2 flex items-center justify-start space-x-2">
+                                <div class="avatar h-7 w-7  hover:z-10">
+                                    <img class="rounded-full ring ring-white dark:ring-navy-700"
+                                         src="http://127.0.0.1:8000/images/100x100.png" alt="avatar">
+                                </div>
+                                <div>
+                                    {{ Auth::user()->name }}
+                                </div>
 
+                            </div>
+                            <ul>
                                 <li>
                                     <x-app-partials.dropdown-link :href="route('front.register')">
                                         sfsf

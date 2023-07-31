@@ -41,19 +41,43 @@
 </head>
 
 <body x-data x-bind="$store.global.documentBody"
-      class=" bg-white @isset($isSidebarOpen) {{ $isSidebarOpen === 'true' ? 'is-sidebar-open' : '' }} @endisset @isset($isHeaderBlur) {{ $isHeaderBlur === 'true' ? 'is-header-blur' : '' }} @endisset @isset($hasMinSidebar) {{ $hasMinSidebar === 'true' ? 'has-min-sidebar' : '' }} @endisset @isset($headerSticky) {{ $headerSticky === 'false' ? 'is-header-not-sticky' : '' }} @endisset">
+      class=" @isset($company) bg-slate-100 @else bg-white @endisset @isset($isSidebarOpen) {{ $isSidebarOpen === 'true' ? 'is-sidebar-open' : '' }} @endisset @isset($isHeaderBlur) {{ $isHeaderBlur === 'true' ? 'is-header-blur' : '' }} @endisset @isset($hasMinSidebar) {{ $hasMinSidebar === 'true' ? 'has-min-sidebar' : '' }} @endisset @isset($headerSticky) {{ $headerSticky === 'false' ? 'is-header-not-sticky' : '' }} @endisset">
 
 <!-- App preloader-->
 <x-app-preloader/>
-@isset($nonavbar)
-
+@isset($company)
+    <x-company.navbar/>
 @else
     <x-app-partials.navbar/>
 @endisset
-<!-- Page Wrapper -->
-<div id="root" class="min-h-100vh flex  grow mt-8  dark:bg-navy-900" x-cloak>
-    {{ $slot }}
-</div>
+
+@if(session('success'))
+    <x-app-partials.alert class="bg-green-100 text-green-700">
+        <p class="font-bold">Success!</p>
+        {{ session('success') }}
+    </x-app-partials.alert>
+@endif
+@if(session('error'))
+    <x-app-partials.alert class="bg-red-100 text-red-700">
+        <p class="font-bold">Error!</p>
+        {{ session('error') }}
+    </x-app-partials.alert>
+@endif
+
+@if(session('warning'))
+    <x-app-partials.alert class="bg-amber-300 text-amber-700">
+        <p class="font-bold">Warning!</p>
+        {{ session('warning') }}
+    </x-app-partials.alert>
+@endif
+<x-app-partials.container>
+
+    <!-- Page Wrapper -->
+    <div id="root" class="flex  grow mt-8  dark:bg-navy-900" x-cloak>
+        {{ $slot }}
+    </div>
+</x-app-partials.container>
+
 
 <!--
 This is a place for Alpine.js Teleport feature

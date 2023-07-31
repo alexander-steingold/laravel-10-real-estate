@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Company;
+use App\Models\Country;
 use App\Models\Image;
 use App\Models\Item;
 use App\Models\User;
@@ -24,9 +25,14 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         $users = User::all();
 
-        for ($i = 0; $i < 11; $i++) {
+        $this->call([
+            CountrySeeder::class,
+        ]);
+        $countries = Country::all();
+        for ($i = 0; $i < 10; $i++) {
             Company::factory()->create([
-                'user_id' => $users->pop()->id
+                'user_id' => $users->pop()->id,
+                'country_id' => $countries->random()->id
             ]);
         }
         $companies = Company::all();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,7 +16,6 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('country');
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('zip')->nullable();
@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->string('fax')->nullable();
             $table->string('website')->nullable();
             $table->foreignIdFor(User::class)->nullable()->constrained();
+            $table->foreignIdFor(Country::class)->nullable()->constrained();
             $table->timestamps();
         });
     }
