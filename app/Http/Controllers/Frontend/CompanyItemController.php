@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ItemRequest;
 use App\Models\Item;
 use App\Services\ItemService;
 use Illuminate\Http\Request;
 
-class ItemController extends Controller
+class CompanyItemController extends Controller
 {
     protected $targets;
     protected $types;
@@ -21,23 +21,14 @@ class ItemController extends Controller
         $this->features = Item::$features;
     }
 
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $items = $this->itemService->index();
-
-        return view('frontend.item.index',
-            [
-                'items' => $items,
-                'targets' => $this->targets,
-                'types' => $this->types,
-                'features' => $this->features,
-            ]
-        );
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.

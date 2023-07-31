@@ -46,7 +46,6 @@ class ItemFactory extends Factory
             'swimming_pool' => fake()->boolean(10),
             'laundry_room' => fake()->boolean(20),
             'wifi' => fake()->boolean(50),
-
             'status' => fake()->boolean(80), // 80% chance of being true (available), 20% chance of false (not available)
 
         ];

@@ -2,26 +2,26 @@
 
 namespace App\Policies;
 
-use App\Models\Company;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class CompanyPolicy
+class ItemPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return $user->company !== null;
+        return true;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Company $company): bool
+    public function view(User $user, Item $item): bool
     {
-        return $user->company !== null;
+        return true;
     }
 
     /**
@@ -29,43 +29,41 @@ class CompanyPolicy
      */
     public function create(User $user): bool
     {
-        return $user->company === null;
-    }
-
-    public function store(User $user): bool
-    {
-        return $user->company === null;
+        return $user->company !== null;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Company $company): bool
+    public function update(User $user, Item $item): bool
     {
-        return true;
+        //check if job user id is related to current user
+//        if ($job->employer->user_id !== $user->id) {
+//            return false;
+//        }
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Company $company): bool
+    public function delete(User $user, Item $item): bool
     {
-        return true;
+        return $item->company->user_id === $user->id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Company $company): bool
+    public function restore(User $user, Item $item): bool
     {
-        return true;
+        return $item->company->user_id === $user->id;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Company $company): bool
+    public function forceDelete(User $user, Item $item): bool
     {
-        return true;
+        return $item->company->user_id === $user->id;
     }
 }

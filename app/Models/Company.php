@@ -11,10 +11,13 @@ class Company extends Model
 {
     use HasFactory;
 
+    public static array $type = ['agency', 'realtor'];
+
     protected $fillable = [
         'name',
         'description',
-        'country',
+        'type',
+        'country_id',
         'city',
         'address',
         'zip',

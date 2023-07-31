@@ -3,5 +3,5 @@
 return [
     'register' => 'Register',
     'login' => 'Login',
-    'switchtoagency' => 'Switch to Agency',
+    'switchtobusiness' => 'Switch to Business',
 ];

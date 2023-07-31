@@ -7,7 +7,7 @@
 
             @auth
                 <x-app-partials.nav-link class="text-success" :href="route('company.dashboard')">
-                    {{ __('navbar.switchtoagency') }}
+                    {{ __('navbar.switchtobusiness') }}
                 </x-app-partials.nav-link>
                 <div
                     x-data="usePopper({placement:'bottom-start',offset:4})"

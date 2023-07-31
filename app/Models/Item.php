@@ -31,6 +31,35 @@ class Item extends Model
         'laundry_room',
         'wifi'
     ];
+    protected $fillable = [
+        'title',
+        'description',
+        'type',
+        'target',
+        'year_built',
+        'price',
+        'bedrooms',
+        'bathrooms',
+        'area',
+        'city',
+        'address',
+        'contact_name',
+        'contact_email',
+        'contact_phone',
+        'available_from',
+        'status',
+        'air_condition',
+        'free_parking',
+        'central_heating',
+        'window_covering',
+        'security',
+        'gym',
+        'alarm',
+        'garage',
+        'swimming_pool',
+        'laundry_room',
+        'wifi',
+    ];
 
     public function company(): BelongsTo
     {

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +21,7 @@ class CompanyFactory extends Factory
         return [
             'name' => fake()->company,
             'description' => fake()->paragraph,
+            'type' => fake()->randomElement(Company::$type),
             'city' => fake()->city,
             'address' => fake()->address,
             'zip' => fake()->postcode,

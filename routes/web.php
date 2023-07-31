@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AuthController as AdminAuthController;
 use App\Http\Controllers\Frontend\AuthController as FrontAuthController;
 use App\Http\Controllers\Frontend\CompanyController;
+use App\Http\Controllers\Frontend\CompanyItemController;
 use App\Http\Controllers\Frontend\LandingController;
 use App\Http\Controllers\Backend\PagesController;
 use App\Http\Controllers\Frontend\UserController;
@@ -35,15 +36,18 @@ Route::group(
         Route::post('/register', 'register')->name('front.register');
     });
 
-    Route::resource('item', ItemController::class);
+    Route::resource('item', ItemController::class)->except('create');
 
 
     Route::middleware('auth')->group(function () {
+        Route::middleware('company')->prefix('company')->controller(ItemController::class)->group(function () {
+            Route::get('/item/create', 'create')->name('company.item.create');
+        });
+
+
         Route::post('/logout', [FrontAuthController::class, 'logout'])->name('front.logout');
-
-
+        // Route::middleware('company')->resource('company-item', CompanyItemController::class);
         Route::prefix('company')->controller(CompanyController::class)->group(function () {
-
             Route::get('/dashboard', 'dashboard')->name('company.dashboard');
         });
         Route::resource('user', UserController::class);
