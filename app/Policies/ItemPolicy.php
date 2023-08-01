@@ -33,6 +33,14 @@ class ItemPolicy
     }
 
     /**
+     * Determine whether the user can create models.
+     */
+    public function store(User $user): bool
+    {
+        return $user->company !== null;
+    }
+
+    /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Item $item): bool

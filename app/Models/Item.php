@@ -80,59 +80,7 @@ class Item extends Model
     {
         $query->where('status', '=', '1');
     }
-
-//    public function scopeFilter(Builder|QueryBuilder $query, array $filters)
-//    {
-//        return $query->when($filters['search'] ?? null, function ($query, $search) {
-//            $query->where(function ($query) use ($search) {
-//                $query->where('title', 'like', '%' . $search . '%')
-//                    ->orWhere('description', 'like', '%' . $search . '%')
-//                    ->orWhere('city', 'like', '%' . $search . '%')
-//                    ->orWhere('address', 'like', '%' . $search . '%')
-//                    ->orWhere('contact_name', 'like', '%' . $search . '%');
-////                    ->orWhereHas('employer', function ($query) use ($search) {
-////                        $query->where('company_name', 'like', '%' . $search . '%');
-////                    });
-//            });
-//
-//        })->when($filters['bedrooms'] ?? null, function ($query, $bedrooms) {
-//            $query->where('bedrooms', '=', $bedrooms);
-//        })->when($filters['bathrooms'] ?? null, function ($query, $bathrooms) {
-//            $query->where('bathrooms', '=', $bathrooms);
-//        })->when($filters['type'] ?? null, function ($query, $type) {
-//            $query->where('type', '=', $type);
-//        })->when($filters['status'] ?? null, function ($query, $status) {
-//            $query->where('target', '=', $status);
-//        })->when($filters['building'] ?? null, function ($query, $building) {
-//            $currentYear = Carbon::now()->year;
-//            $lowerBound = $currentYear - $building;
-//            $query->where('year_built', '>=', $lowerBound);
-//            $query->where('year_built', '<=', $currentYear);
-//        })->when($filters['area'] ?? null, function ($query, $area) {
-//            $query->where('area', '>=', $area);
-//        })->when($filters['price'] ?? null, function ($query, $price) {
-//            $query->where('price', '<=', $price);
-//        })->when($filters['available'] ?? null, function ($query, $available) {
-//            $startDate = $available == '-1' ? Carbon::now() : Carbon::now()->addMonths($available - 1);
-//            $query->where('available_from', '>=', $startDate);
-//        })->when($filters ?? null, function ($query, $filters) {
-////            $query->where(function ($query) use ($filters) {
-////                foreach (self::$features as $feature) {
-////                    $query->orWhere(function ($query) use ($filters, $feature) {
-////
-////                        $query->where($feature, '=', 1);
-////
-////                    });
-////                }
-////            });
-//            foreach (self::$features as $feature) {
-//                $query->when($filters[$feature] ?? null, function ($query) use ($feature) {
-//                    $query->where($feature, '=', 1);
-//                });
-//            }
-//        });
-//    }
-
+    
 
     public function scopeFilter(Builder|QueryBuilder $query, array $filters)
     {

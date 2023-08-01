@@ -1,6 +1,6 @@
 <div class="relative">
     <x-app-partials.image
-        src="{{ !$item->firstImage->url ? $item->firstImage->url : asset('images/200x200.png')  }}"
+        src="{{ (isset($item->firstImage->url) && $item->firstImage->url) ? asset('storage/'.$item->firstImage->url) : asset('images/200x200.png')  }}"
         :alt="$item->title"
         :title="$item->title"/>
     <div class="absolute top-2 right-4  ">

@@ -24,8 +24,8 @@ return new class extends Migration {
             $table->string('phone')->nullable();
             $table->string('fax')->nullable();
             $table->string('website')->nullable();
-            $table->foreignIdFor(User::class)->nullable()->constrained();
-            $table->foreignIdFor(Country::class)->nullable()->constrained();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignIdFor(Country::class)->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }

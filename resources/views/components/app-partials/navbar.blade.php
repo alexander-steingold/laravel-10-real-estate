@@ -62,12 +62,12 @@
                     </div>
                 </div>
             @else
-                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <div class="hidden sm:flex sm:items-center sm:ml-6 ">
                     <x-app-partials.nav-link :href="route('front.register')">
                         {{ __('navbar.register') }}
                     </x-app-partials.nav-link>
 
-                    <x-app-partials.nav-link :href="route('front.login')">
+                    <x-app-partials.nav-link :href="route('front.login')" class="ml-4">
                         {{ __('navbar.login') }}
                     </x-app-partials.nav-link>
                 </div>

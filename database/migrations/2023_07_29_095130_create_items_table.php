@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->string('contact_email')->nullable();
             $table->string('contact_phone')->nullable();
             $table->date('available_from')->nullable();
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->default(1);
             $table->boolean('air_condition')->nullable();
             $table->boolean('balcony')->nullable();
             $table->boolean('free_parking')->nullable();
@@ -41,7 +41,7 @@ return new class extends Migration {
             $table->boolean('swimming_pool')->nullable();
             $table->boolean('laundry_room')->nullable();
             $table->boolean('wifi')->nullable();
-            $table->foreignIdFor(Company::class)->nullable()->constrained();
+            $table->foreignIdFor(Company::class)->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }

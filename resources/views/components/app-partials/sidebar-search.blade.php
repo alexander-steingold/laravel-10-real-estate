@@ -131,7 +131,6 @@
         </div>
         <x-app-partials.divider/>
         @foreach($features as $feature)
-
             <div class="mt-2">
                 <x-forms.checkbox name="{{ $feature }}" value="{{ request($feature) }}">
                     {{ Str::headline(Str::replace('_', ' ',$feature)) }}

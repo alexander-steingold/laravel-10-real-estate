@@ -40,11 +40,11 @@ class DatabaseSeeder extends Seeder
             $item = Item::factory()->create([
                 'company_id' => $companies->random()->id
             ]);
-            foreach (range(1, fake()->numberBetween(5, 10)) as $index) {
-                Image::factory()->create([
-                    'item_id' => $item->id
-                ]);
-            }
+//            foreach (range(1, fake()->numberBetween(5, 10)) as $index) {
+//                Image::factory()->create([
+//                    'item_id' => $item->id
+//                ]);
+//            }
         }
 
 

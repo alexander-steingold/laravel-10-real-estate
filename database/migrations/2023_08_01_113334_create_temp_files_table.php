@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,10 +12,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('temp_files', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Item::class)->nullable()->constrained()->cascadeOnDelete();;
-            $table->string('url');
+            $table->string('folder');
+            $table->string('file');
+            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('temp_files');
     }
 };

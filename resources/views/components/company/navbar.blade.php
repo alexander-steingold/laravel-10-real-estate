@@ -21,8 +21,8 @@
             <div class="inline-flex items-center">
                 <x-app-partials.nav-link href="{{ route('company.item.create') }}" title="Add New Property" class="text-success
                 rounded-full border-2 border-success p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor" stroke-width="3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor" stroke-width="4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
                     </svg>
                 </x-app-partials.nav-link>
@@ -33,7 +33,7 @@
                     <button
                         x-ref="popperRef"
                         @click="isShowPopper = !isShowPopper"
-                        class="avatar h-9 w-9  hover:z-10">
+                        class="avatar h-8 w-8  hover:z-10">
                         <img class="rounded-full ring ring-white dark:ring-navy-700"
                              src="http://127.0.0.1:8000/images/100x100.png" alt="avatar">
                     </button>
