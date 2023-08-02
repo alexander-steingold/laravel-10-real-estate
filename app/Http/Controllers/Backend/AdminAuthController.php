@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
-class AuthController extends Controller
+class AdminAuthController extends Controller
 {
     public function loginView()
     {
@@ -31,7 +31,7 @@ class AuthController extends Controller
         $validated = $validator->validated();
 
         if (\Auth::attempt(array('email' => $validated['email'], 'password' => $validated['password']))) {
-            return redirect()->route('index');
+            return redirect()->route('admin.dashboard');
         } else {
             $validator->errors()->add(
                 'password', 'The password does not match with username'

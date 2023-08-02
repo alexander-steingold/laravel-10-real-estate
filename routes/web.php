@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Backend\AuthController as AdminAuthController;
+use App\Http\Controllers\Backend\AdminDashboardController;
+use App\Http\Controllers\Backend\AdminAuthController;
 use App\Http\Controllers\Frontend\AuthController as FrontAuthController;
 use App\Http\Controllers\Frontend\CompanyController;
 use App\Http\Controllers\Frontend\CompanyItemController;
@@ -67,9 +68,17 @@ Route::group(
         Route::post('/register', 'register')->name('admin.register');
     });
 
+    Route::prefix('admin')->middleware('auth')->group(function () {
+        Route::controller(AdminDashboardController::class)->group(function () {
+            Route::get('/', fn() => to_route('admin.dashboard'));
+            Route::get('/dashboard', 'index')->name('admin.dashboard');
+
+        });
+    });
 });
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+
+Route::prefix('theme')->middleware('auth')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
     Route::get('/', [PagesController::class, 'dashboardsCrmAnalytics'])->name('index');
 
