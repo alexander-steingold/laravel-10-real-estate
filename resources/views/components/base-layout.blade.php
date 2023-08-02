@@ -71,7 +71,6 @@
     </x-app-partials.alert>
 @endif
 <x-app-partials.container>
-
     <!-- Page Wrapper -->
     <div id="root" class="flex  grow mt-8  dark:bg-navy-900" x-cloak>
         {{ $slot }}
